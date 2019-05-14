@@ -1,7 +1,7 @@
 import { httpListener } from '@marblejs/core'
 import { bodyParser$ } from '@marblejs/middleware-body'
 
-import api$ from './api'
+import api$ from 'api'
 
 const middlewares = [
   bodyParser$()

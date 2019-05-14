@@ -1,6 +1,7 @@
 import { combineRoutes, EffectFactory } from '@marblejs/core'
 
 import { versionEffect$ } from './common/effects'
+import tables$ from './tables'
 
 const root$ = EffectFactory
   .matchPath('/')
@@ -8,5 +9,6 @@ const root$ = EffectFactory
   .use(versionEffect$)
 
 export default combineRoutes('/api/v1', [
-  root$
+  root$,
+  tables$
 ])

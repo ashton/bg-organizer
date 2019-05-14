@@ -11,6 +11,7 @@
   "dependencies": {
     "@marblejs/core": "^2.1.1",
     "@marblejs/middleware-body": "^2.1.1",
+    "@marblejs/middleware-joi": "^2.1.1",
     "chalk": "^2.4.2",
     "mongoose": "^5.5.8",
     "rxjs": "^6.5.2"
@@ -19,6 +20,7 @@
     "@babel/core": "^7.4.4",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.4",
+    "babel-plugin-module-resolver": "^3.2.0",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.2",

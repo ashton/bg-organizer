@@ -1,5 +1,5 @@
 import { createContext } from '@marblejs/core'
-import { Database, Server } from './connection'
+import { Database, Server } from 'connection'
 import httpListener from './app'
 
 const bootstrap = async () => {
