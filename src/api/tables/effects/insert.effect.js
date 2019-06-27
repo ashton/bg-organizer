@@ -1,18 +1,13 @@
 import { use } from '@marblejs/core'
-import { validator$, Joi } from '@marblejs/middleware-joi'
-import { tap, map, mergeMap } from 'rxjs/operators'
+import { map, mergeMap, mapTo } from 'rxjs/operators'
 
 import { TableDao } from '../model'
+import { insertTableValidator$ } from '../model/table.validator'
 
 export const insertTableEffect$ = req$ =>
   req$.pipe(
-    use(
-      validator$({
-        game: Joi.string().required(),
-        maxPlayers: Joi.number().required()
-      })
-    ),
+    use(insertTableValidator$),
     map(req => req.body),
     mergeMap(TableDao.insert),
-    tap(console.log)
+    mapTo({ status: 201 })
   )
