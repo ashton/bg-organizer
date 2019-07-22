@@ -2,7 +2,7 @@ import { use } from '@marblejs/core'
 import { map, mergeMap, mapTo } from 'rxjs/operators'
 
 import { TableDao } from '../model'
-import { insertTableValidator$ } from '../model/table.validator'
+import { insertTableValidator$ } from '../model/table.validators'
 
 export const insertTableEffect$ = req$ =>
   req$.pipe(

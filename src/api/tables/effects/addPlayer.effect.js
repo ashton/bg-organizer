@@ -3,7 +3,7 @@ import { propEq } from 'ramda'
 import { map, mergeMap, mapTo, filter, defaultIfEmpty } from 'rxjs/operators'
 
 import { TableDao } from '../model/table.dao'
-import { addPlayerValidator$ } from '../model/table.validator'
+import { addPlayerValidator$ } from '../model/table.validators'
 
 export const addPlayerEffect$ = req$ =>
   req$.pipe(

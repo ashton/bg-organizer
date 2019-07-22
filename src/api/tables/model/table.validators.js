@@ -7,12 +7,11 @@ export const insertTableSchema = t.type({
 
 export const insertTableValidator$ = requestValidator$({ body: insertTableSchema })
 
-export const addPlayerPathSchema = t.type({
-  tableId: t.string
-})
+export const addPlayerPathSchema = t.type({ tableId: t.string })
 
-export const addPlayerBodySchema = t.type({
-  name: t.string
-})
+export const addPlayerBodySchema = t.intersection([
+  t.type({ name: t.string }),
+  t.partial({ phone: t.string })
+])
 
 export const addPlayerValidator$ = requestValidator$({ body: addPlayerBodySchema, params: addPlayerPathSchema })
