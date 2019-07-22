@@ -1,5 +1,5 @@
 import { combineRoutes, EffectFactory } from '@marblejs/core'
-import { insertTableEffect$, getTableListEffect$ } from './effects'
+import { insertTableEffect$, getTableListEffect$, addPlayerEffect$ } from './effects'
 
 const insertTable$ = EffectFactory
   .matchPath('/')
@@ -11,7 +11,13 @@ const getTableList$ = EffectFactory
   .matchType('GET')
   .use(getTableListEffect$)
 
+const addPlayer$ = EffectFactory
+  .matchPath('/:tableId/players')
+  .matchType('POST')
+  .use(addPlayerEffect$)
+
 export default combineRoutes('tables', [
   insertTable$,
-  getTableList$
+  getTableList$,
+  addPlayer$
 ])
