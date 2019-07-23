@@ -7,6 +7,7 @@ import { mergeMap, mapTo, filter, throwIfEmpty, catchError } from 'rxjs/operator
 import { TableDao } from '../model/table.dao'
 import { addPlayerValidator$ } from '../model/table.validators'
 
+const successfulUpdate = propEq('nModified', 1)
 const getTable = tableId =>
   TableDao.findById(tableId).pipe(
     filter(table => table.players.length < table.maxPlayers),
@@ -23,8 +24,9 @@ export const addPlayerEffect$ = req$ =>
       })
     ),
     mergeMap(({ player, table }) => TableDao.addPlayer({ player, tableId: table._id })),
-    filter(propEq('nModified', 1)),
+    filter(successfulUpdate),
     mapTo({ status: 201 }),
+
     throwIfEmpty(() => ({ status: 500, text: 'Error adding player' })),
     catchError(err => of({ status: err.status, body: { message: err.text } }))
   )
