@@ -1,16 +1,30 @@
 import { use } from '@marblejs/core'
 import { propEq } from 'ramda'
-import { map, mergeMap, mapTo, filter, defaultIfEmpty } from 'rxjs/operators'
+
+import { of, forkJoin } from 'rxjs'
+import { mergeMap, mapTo, filter, throwIfEmpty, catchError } from 'rxjs/operators'
 
 import { TableDao } from '../model/table.dao'
 import { addPlayerValidator$ } from '../model/table.validators'
 
+const getTable = tableId =>
+  TableDao.findById(tableId).pipe(
+    filter(table => table.players.length < table.maxPlayers),
+    throwIfEmpty(() => ({ status: 422, text: 'Table full' }))
+  )
+
 export const addPlayerEffect$ = req$ =>
   req$.pipe(
     use(addPlayerValidator$),
-    map(req => ({ player: req.body, tableId: req.params.tableId })),
-    mergeMap(TableDao.addPlayer),
+    mergeMap(({ body, params }) =>
+      forkJoin({
+        table: getTable(params.tableId),
+        player: of(body)
+      })
+    ),
+    mergeMap(({ player, table }) => TableDao.addPlayer({ player, tableId: table._id })),
     filter(propEq('nModified', 1)),
     mapTo({ status: 201 }),
-    defaultIfEmpty({ status: 500, body: { error: 'Error adding player' } })
+    throwIfEmpty(() => ({ status: 500, text: 'Error adding player' })),
+    catchError(err => of({ status: err.status, body: { message: err.text } }))
   )
