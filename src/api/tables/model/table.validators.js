@@ -5,7 +5,10 @@ export const insertTableSchema = t.type({
   maxPlayers: t.number
 })
 
-export const insertTableValidator$ = requestValidator$({ body: insertTableSchema })
+export const insertTableValidator$ = requestValidator$({
+  body: insertTableSchema,
+  params: t.type({ eventId: t.string })
+})
 
 export const addPlayerPathSchema = t.type({ tableId: t.string })
 
