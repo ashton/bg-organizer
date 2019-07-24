@@ -1,0 +1,8 @@
+{
+  "name": "BG Organizer API",
+  "description": "API for boardgames events organizer",
+  "repository": "https://github.com/ashton/bg-organizer",
+  "logo": "https://cdn1.iconfinder.com/data/icons/warehouse-icon-set-1/512/rack-08-512.png",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}

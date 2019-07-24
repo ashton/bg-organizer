@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js"
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist"
   },
   "repository": "git@github.com:ashton/bg-organizer.git",
   "author": "matheusashton@gmail.com",
@@ -18,6 +19,7 @@
     "rxjs": "^6.5.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.4.4",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.4",
