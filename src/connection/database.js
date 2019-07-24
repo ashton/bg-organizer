@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import mongoose from 'mongoose'
 
-const { DB_URL } = process.env
+const { MONGODB_URI } = process.env
 
 const onOpen = () =>
   console.info(chalk.green('[database] connected'))
@@ -13,7 +13,7 @@ const onError = (error) => {
 
 export default {
   connect () {
-    return mongoose.connect(DB_URL, { useNewUrlParser: true })
+    return mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
       .then(onOpen)
       .catch(onError)
   },
