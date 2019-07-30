@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+- 12.5.0
+deploy:
+  provider: heroku
+  app: bg-organizer
+  api_key:
+    secure: JaPXxYbyoErHx+S6JyF+pXoBslLHUVu3QYnUp6MoHQdqf7Mq3kdHy4mWMezIoSz6GYDoHZkIFP/Ji+pGrSx5v/E0rl+LZff+n0I53/POW7hmGLXc6r1rvraqeeojmWEdoUzYCSP8pHClmxydy86yEyxomc+7DwJHT6k7fHauBlVHJopdaWAx4S8eTrokq9dxL3JjBhSGzCKoxPDFkS13pkKI7G9WjqEFmpkv5NuPU08mfbxghoQGZB1++DVQuYy2zZnInYvcGc/d4MUJqdrQWnd5fLDXzU43WXBrPhX3s5mPa1gouLQ5w8LoVJ+JtB6A4bkTankXa6hw9a+5xhjeGjUuiq5CddvhDC6f3as+8untD9Cv4ANoz345JjO/WDEWEqi4PCXf9e5CXKiT/9Y96ZllVmejk23ioFDmTGZH+JVT/PQk/Sio+9sp26uwnM3L5tD2IcCAES0YR62hWgmsFBB/8Uzf1e2XmnkelC/iplZKLzwxm5Kr2tiS76oE2cOrV72ksbptZnenfPbfCaYIZirPhZg0LO55TmzeluooPfx2XUwPjawaT1bE+yXFqHyZJ/+f5cCrzyWD5H4z7+7crtFilJoepMJTfYOYS5rVdx91O2D+3/BTnGEX+kVi31euxyDj1L4IX1pVFWOEUOr8+PusnaXzGoVs8MK7NeunS+c=
