@@ -1,4 +1,4 @@
-import { use } from '@marblejs/core'
+import { use, HttpError, HttpStatus } from '@marblejs/core'
 import { propEq } from 'ramda'
 
 import { of, forkJoin } from 'rxjs'
@@ -11,7 +11,7 @@ const successfulUpdate = propEq('nModified', 1)
 const getTable = tableId =>
   TableDao.findById(tableId).pipe(
     filter(table => table.players.length < table.maxPlayers),
-    throwIfEmpty(() => ({ status: 422, text: 'Table full' }))
+    throwIfEmpty(() => new HttpError('Table full!', HttpStatus.UNPROCESSABLE_ENTITY))
   )
 
 export const addPlayerEffect$ = req$ =>
@@ -27,6 +27,6 @@ export const addPlayerEffect$ = req$ =>
     filter(successfulUpdate),
     mapTo({ status: 201 }),
 
-    throwIfEmpty(() => ({ status: 500, text: 'Error adding player' })),
-    catchError(err => of({ status: err.status, body: { message: err.text } }))
+    throwIfEmpty(() => new HttpError('Error adding player', HttpStatus.INTERNAL_SERVER_ERROR)),
+    // catchError(err => of({ status: err.status, body: { status: 'error', message: err.message } }))
   )
