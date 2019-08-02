@@ -7,7 +7,10 @@ import { notFoundEffect$, errorHandler$ as error$ } from 'api/common/effects'
 
 const middlewares = [
   bodyParser$(),
-  cors$({ origin: ['localhost:8080'] })
+  cors$({
+    origin: ['localhost:8080'],
+    methods: ['HEAD', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+  })
 ]
 
 const effects = [
