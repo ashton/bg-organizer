@@ -1,6 +1,6 @@
 import { HttpError, HttpStatus, EffectFactory } from '@marblejs/core';
 import { throwError } from 'rxjs';
-import { mapTo, map, switchMap } from 'rxjs/operators';
+import { mapTo, map, switchMap, tap } from 'rxjs/operators';
 
 export const notFoundEffect$ = EffectFactory
   .matchPath('*')
@@ -12,5 +12,6 @@ export const notFoundEffect$ = EffectFactory
 export const errorHandler$ = (req$, _, meta) =>
   req$.pipe(
     mapTo(meta.error),
+    tap(console.error),
     map(error => ({ status: error.status, body: { status: 'error', message: error.message } }))
   )
