@@ -9,6 +9,7 @@ const middlewares = [
   bodyParser$(),
   cors$({
     origin: ['localhost:8080'],
+    allowHeaders: '*',
     methods: ['HEAD', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
   })
 ]
