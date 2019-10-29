@@ -1,5 +1,5 @@
 import { combineRoutes, EffectFactory } from '@marblejs/core'
-import { insertEventEffect$, getTableListEffect$ } from './effects'
+import { insertEventEffect$, getEventListEffect$ } from './effects'
 import { insertTableEffect$, getEventTableListEffect$ } from '../tables/effects'
 
 const insertEvent$ = EffectFactory
@@ -10,7 +10,7 @@ const insertEvent$ = EffectFactory
 const getEventsList$ = EffectFactory
   .matchPath('/')
   .matchType('GET')
-  .use(getTableListEffect$)
+  .use(getEventListEffect$)
 
 const createTable$ = EffectFactory
   .matchPath('/:eventId/tables')
